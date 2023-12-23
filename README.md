@@ -42,7 +42,7 @@ export default function (player, args) {
 
 1. Download and install the latest version of [Visual Studio Code](https://code.visualstudio.com/), as well as the LTS version of [Node.js](https://nodejs.org/en/).
 2. Download the latest version of the template from the [releases page](https://github.com/imlighty/bedrock-addon-template/releases).
-3. Extract the template to a folder of your choice. Open the folder in Visual Studio Code and feel free to change anything in the `package.json` file (such as the name, description, author, etc.) to your liking, as well as both the `manifest.json` files in the `behavior_packs` and `resource_packs` folders located in the `src` folder.
+3. Extract the template to a folder of your choice. Open the folder in Visual Studio Code and feel free to change both the `manifest.json` files in the `behavior_packs` and `resource_packs` folders located in the `src` folder to your liking (for those who know what they're doing, you can also change things like name, description and author in the `package.json` file).
 4. Open a terminal in Visual Studio Code and run `npm i -D` to install all the dependencies, including the development dependencies.
 5. Run `npm run setup` to download the Bedrock Dedicated Server and set it up properly for use with the template.
 6. Run `npm run watch` to start the Bedrock Dedicated Server and watch for changes in the `src` folder. This will also automatically reload all the scripts when a change is detected.
@@ -52,4 +52,4 @@ export default function (player, args) {
 
 To update the template (therefore, the tools), simply download the latest version from the [releases page](https://github.com/imlighty/bedrock-addon-template/releases) and replace everything except the `src` folder with the new files. You can also run `npm run setup` again to update the Bedrock Dedicated Server.
 
-Make sure to check the changelog so you don't miss any important changes that might break things!
+You also need to update the `package.json` file to match the new version of the template. You can do this by running `npm i -D` again. If you're using scripts, make sure that you update your `manifest.json` file to use the new Script API version.
