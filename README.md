@@ -5,7 +5,7 @@ This template is provided to help you get started making your own Bedrock Editio
 ## Features
 
 -   **Multi-pack support** - Easily add behavior packs and resource packs and automatically add them in the world's packs list. Server restarting is required for changes to take effect.
--   **Automatic script reloading** - No more manually editing pack.mcmeta! This template will automatically generate it for you. This is achieved by using a Bedrock Dedicated Server and a clever watch script that will automatically reload all the scripts.
+-   **Automatic script reloading** - This is achieved by using a Bedrock Dedicated Server and a clever watch script that will automatically reload all the scripts.
 -   **Event handler** - Easily handle events such as when a player joins the world by simply adding a file exporting a default function to the `events` folder.
 
 ```js
