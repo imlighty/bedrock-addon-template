@@ -1,0 +1,5 @@
+node_modules/
+server/
+.idea/
+*.exe
+server.zip
