@@ -5,15 +5,19 @@
   "main": "src/behavior_packs/template/scripts/main.js",
   "scripts": {
     "watch": "node tools/watch_server.js",
-    "setup": "node tools/setup_server.js"
+    "setup": "node tools/setup_server.js",
+    "update": "node tools/update_server.js && npm i -D && npm run setup"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/imlighty/bedrock-addon-template.git"
   },
   "keywords": [
+    "minecraft",
+    "bedrock-script-api",
     "template"
   ],
+  "type": "module",
   "author": "ImLighty",
   "license": "MIT",
   "bugs": {

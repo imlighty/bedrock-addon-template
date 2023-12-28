@@ -1,8 +1,10 @@
-const fs = require('fs')
-const path = require('path')
-const chokidar = require('chokidar')
-const process = require('node:process')
-const fse = require('fs-extra')
+import fs from 'fs'
+import path from 'path'
+import chokidar from 'chokidar'
+import process from 'node:process'
+import fse from 'fs-extra'
+
+const loadJSON = (path) => JSON.parse(fs.readFileSync(pathToFileURL(path)))
 
 function generateJsonFiles() {
     let behaviorPacks = []
@@ -11,14 +13,16 @@ function generateJsonFiles() {
         // If the folder is a folder
         if (fs.statSync(path.join(process.cwd(), 'src', 'behavior_packs', folder)).isDirectory()) {
             // Add the folder to the list of behavior packs
-            let manifest = require(path.join(process.cwd(), 'src', 'behavior_packs', folder, 'manifest.json'))
+            const manifest = loadJSON(path.join(process.cwd(), 'src', 'behavior_packs', folder, 'manifest.json'))
             behaviorPacks.push({
                 pack_id: manifest.header.uuid,
                 version: manifest.header.version,
             })
         }
     })
-    if (fs.existsSync(path.join(process.cwd(), 'server', 'worlds', 'Development Server', 'world_behavior_packs.json'))) {
+    if (
+        fs.existsSync(path.join(process.cwd(), 'server', 'worlds', 'Development Server', 'world_behavior_packs.json'))
+    ) {
         fs.unlinkSync(path.join(process.cwd(), 'server', 'worlds', 'Development Server', 'world_behavior_packs.json'))
     }
     fs.writeFileSync(
@@ -29,14 +33,16 @@ function generateJsonFiles() {
         // If the folder is a folder
         if (fs.statSync(path.join(process.cwd(), 'src', 'resource_packs', folder)).isDirectory()) {
             // Add the folder to the list of resource packs
-            let manifest = require(path.join(process.cwd(), 'src', 'resource_packs', folder, 'manifest.json'))
+            const manifest = loadJSON(path.join(process.cwd(), 'src', 'resource_packs', folder, 'manifest.json'))
             resourcePacks.push({
                 pack_id: manifest.header.uuid,
                 version: manifest.header.version,
             })
         }
     })
-    if (fs.existsSync(path.join(process.cwd(), 'server', 'worlds', 'Development Server', 'world_resource_packs.json'))) {
+    if (
+        fs.existsSync(path.join(process.cwd(), 'server', 'worlds', 'Development Server', 'world_resource_packs.json'))
+    ) {
         fs.unlinkSync(path.join(process.cwd(), 'server', 'worlds', 'Development Server', 'world_resource_packs.json'))
     }
     fs.writeFileSync(
@@ -119,7 +125,7 @@ function reloadPacks() {
 }
 
 // Create a process that starts the server in the server folder
-const { spawn } = require('child_process')
+import { spawn } from 'child_process'
 let executable = 'bedrock_server'
 if (process.platform === 'win32') {
     executable = 'bedrock_server.exe'
@@ -145,7 +151,8 @@ server.stderr.on('data', (data) => {
     console.error(data.toString())
 })
 
-const readline = require('readline')
+import readline from 'readline'
+import { pathToFileURL } from 'url'
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,

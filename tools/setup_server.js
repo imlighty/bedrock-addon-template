@@ -1,10 +1,16 @@
-const path = require('path')
-const fs = require('fs')
-const version = require('./info.json').minecraft_version
+import path from 'path'
+import fs from 'fs'
+import ProgressBar from 'progress'
+import https from 'https'
+import extract from 'extract-zip'
+import { pathToFileURL } from 'url'
+
+const loadJSON = (path) => JSON.parse(fs.readFileSync(pathToFileURL(path)))
+
+const version = loadJSON(path.join(process.cwd(), 'tools', 'data.json')).server_version
 
 if (fs.existsSync(path.join(process.cwd(), 'server'))) {
-    console.log('Deleting server folder...')
-    fs.rmdir(path.join(process.cwd(), 'server'), () => {
+    fs.rm(path.join(process.cwd(), 'server'), { recursive: true, force: true }, () => {
         fs.mkdir(path.join(process.cwd(), 'server'), () => {})
     })
 }
@@ -16,8 +22,6 @@ if (process.platform === 'win32') {
 }
 
 console.log('Downloading server...')
-const ProgressBar = require('progress')
-const https = require('https')
 const bar = new ProgressBar('[:bar] :percent :etas', {
     complete: '=',
     incomplete: ' ',
@@ -34,7 +38,6 @@ https.get(link, function (response) {
         zip.close()
 
         console.log('\nExtracting server...')
-        const extract = require('extract-zip')
         extract(path.join(process.cwd(), 'server.zip'), { dir: path.join(process.cwd(), 'server') }).then(() => {
             fs.unlinkSync(path.join(process.cwd(), 'server.zip'))
             fs.rm(path.join(process.cwd(), 'server.zip'), () => {})
@@ -66,7 +69,7 @@ https.get(link, function (response) {
             console.log('Copying level.dat_old...')
             fs.mkdirSync(path.join(process.cwd(), 'server', 'worlds', 'Development Server'), { recursive: true })
             fs.copyFileSync(
-                path.join(__dirname, 'assets', 'level.dat_old'),
+                path.join(process.cwd(), 'tools', 'assets', 'level.dat_old'),
                 path.join(process.cwd(), 'server', 'worlds', 'Development Server', 'level.dat')
             )
 

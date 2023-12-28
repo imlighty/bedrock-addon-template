@@ -50,6 +50,6 @@ export default function (player, args) {
 
 ## Updating
 
-To update the template (therefore, the tools), simply download the latest version from the [releases page](https://github.com/imlighty/bedrock-addon-template/releases) and replace everything except the `src` folder with the new files. You can also run `npm run setup` again to update the Bedrock Dedicated Server.
+To update the version the template is using, run `npm run update`. This will update all the Script API related dependencies' versions in your `manifest.json` file(s) and update the NPM packages used.
 
-Make sure that you also update your `manifest.json` file to use the new Script API version in case it has changed.
+Checking for new releases in the [releases page](https://github.com/imlighty/bedrock-addon-template/releases) is still recommended, as there might be new features and bug fixes. In a future release, updating of the tools will be worked on for the update script, to make it easier for users to update their tools inside the template.
