@@ -5,7 +5,6 @@ import fs from 'fs'
 import { pathToFileURL } from 'url'
 
 const loadJSON = (path) => JSON.parse(fs.readFileSync(pathToFileURL(path)))
-const manifestDependencies = loadJSON(path.join(process.cwd(), 'tools', 'data.json')).dependencies
 
 await fetch('https://raw.githubusercontent.com/imlighty/bedrock-addon-template/main/package.json')
     .then((res) => res.json())
@@ -15,6 +14,17 @@ await fetch('https://raw.githubusercontent.com/imlighty/bedrock-addon-template/m
         fs.writeFileSync(path.join(process.cwd(), 'package.json'), JSON.stringify(packageJson, null, 2))
         console.log('Updated package.json')
     })
+
+await fetch('https://raw.githubusercontent.com/imlighty/bedrock-addon-template/main/tools/data.json')
+    .then((res) => res.json())
+    .then((json) => {
+        const dataJson = loadJSON(path.join(process.cwd(), 'tools', 'data.json'))
+        dataJson.dependencies = json.dependencies
+        fs.writeFileSync(path.join(process.cwd(), 'tools', 'data.json'), JSON.stringify(dataJson, null, 4))
+        console.log('Updated data.json')
+    })
+
+const manifestDependencies = loadJSON(path.join(process.cwd(), 'tools', 'data.json')).dependencies
 
 fs.readdirSync(path.join(process.cwd(), 'src', 'behavior_packs')).forEach((folder) => {
     // If the folder is a folder
