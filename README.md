@@ -50,6 +50,7 @@ export default function (player, args) {
 
 ## Updating
 
-To update the version the template is using, run `npm run update`. This will update all the Script API related dependencies' versions in your `manifest.json` file(s) and update the NPM packages used.
+There's two ways you can update the template:
 
-Checking for new releases in the [releases page](https://github.com/imlighty/bedrock-addon-template/releases) is still recommended, as there might be new features and bug fixes. In a future release, updating of the tools will be worked on for the update script, to make it easier for users to update their tools inside the template.
+-   **Dependency update** - If you only want to update the dependencies of your project, just run `npm run update`. Recommended to those people who don't want to change a lot about the template.
+-   **Full update** (recommended) - To update the template tools, run `npm run upgrade`, that will run the dependency update script as well. Recommended to those who want to keep the template up to date with the project.
