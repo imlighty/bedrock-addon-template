@@ -1,12 +1,12 @@
 {
   "name": "bedrock-addon-template",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "An innovative template to develop Minecraft Bedrock Edition add-ons with.",
   "main": "src/behavior_packs/template/scripts/main.js",
   "scripts": {
     "watch": "node tools/watch_server.js",
     "setup": "node tools/setup_server.js",
-    "update": "node tools/update_versions.js && npm i -D && npm run setup"
+    "update": "node tools/update_deps.js && npm i -D && npm run setup"
   },
   "repository": {
     "type": "git",

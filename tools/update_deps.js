@@ -11,6 +11,7 @@ await fetch('https://raw.githubusercontent.com/imlighty/bedrock-addon-template/m
     .then((json) => {
         const packageJson = loadJSON(path.join(process.cwd(), 'package.json'))
         packageJson.dependencies = json.dependencies
+        packageJson.devDependencies = json.devDependencies
         fs.writeFileSync(path.join(process.cwd(), 'package.json'), JSON.stringify(packageJson, null, 2))
         console.log('Updated package.json')
     })
