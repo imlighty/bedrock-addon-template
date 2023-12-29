@@ -1,17 +1,9 @@
-// Download the repository (https://github.com/imlighty/bedrock-addon-template/releases) and extract its tools folder
-// after deleting the existing tools folder in your project.
-
-// Path: tools/update_deps.js
-
 import path from 'path'
 import fs from 'fs'
 import ProgressBar from 'progress'
 import https from 'https'
 import extract from 'extract-zip'
 import fse from 'fs-extra'
-import { pathToFileURL } from 'url'
-
-const loadJSON = (path) => JSON.parse(fs.readFileSync(pathToFileURL(path)))
 
 const bar = new ProgressBar('[:bar] :percent :etas', {
     complete: '=',
@@ -43,7 +35,7 @@ https.get(link, (res) => {
                 )
 
                 fs.rm(path.join(process.cwd(), 'bedrock-addon-template-main'), { recursive: true, force: true }, () => {
-                    console.log('Updated tools')
+                    console.log('\nSuccessfully updated tools')
                 })
             })
         })
