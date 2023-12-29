@@ -7,7 +7,7 @@
     "watch": "node tools/watch_server.js",
     "setup": "node tools/setup_server.js",
     "update": "node tools/update_deps.js && npm i -D && npm run setup",
-    "upgrade": "node tools/update_tools.js"
+    "upgrade": "node tools/update_tools.js && npm run update"
   },
   "repository": {
     "type": "git",
