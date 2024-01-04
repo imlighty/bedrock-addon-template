@@ -139,16 +139,17 @@ server.stdout.setEncoding('utf8')
 
 server.stdout.on('data', (data) => {
     if (data.toString().includes('Quit correctly')) {
+        console.log('Quit correctly')
         process.exit()
     }
     if (data.toString().includes('started.')) {
         ready = true
     }
-    console.log(data.toString())
+    process.stdout.write(data)
 })
 
 server.stderr.on('data', (data) => {
-    console.error(data.toString())
+    process.stderr.write(data)
 })
 
 import readline from 'readline'
