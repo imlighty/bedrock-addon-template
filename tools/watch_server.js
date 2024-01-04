@@ -3,6 +3,8 @@ import path from 'path'
 import chokidar from 'chokidar'
 import process from 'node:process'
 import fse from 'fs-extra'
+import readline from 'readline'
+import { pathToFileURL } from 'url'
 
 const loadJSON = (path) => JSON.parse(fs.readFileSync(pathToFileURL(path)))
 
@@ -152,8 +154,6 @@ server.stderr.on('data', (data) => {
     process.stderr.write(data)
 })
 
-import readline from 'readline'
-import { pathToFileURL } from 'url'
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
