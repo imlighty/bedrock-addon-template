@@ -3,6 +3,7 @@ import path from 'path'
 import chokidar from 'chokidar'
 import process from 'node:process'
 import fse from 'fs-extra'
+import { spawn } from 'child_process'
 import readline from 'readline'
 import { pathToFileURL } from 'url'
 
@@ -127,7 +128,6 @@ function reloadPacks() {
 }
 
 // Create a process that starts the server in the server folder
-import { spawn } from 'child_process'
 let executable = 'bedrock_server'
 if (process.platform === 'win32') {
     executable = 'bedrock_server.exe'
